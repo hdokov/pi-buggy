@@ -1,3 +1,5 @@
+from approxeng.input.selectbinder import ControllerResource
+
 # Outer try / except catches the RobotStopException we just defined, which we'll raise when we want to
 # bail out of the loop cleanly, shutting the motors down. We can raise this in response to a button press
 try:
