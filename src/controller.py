@@ -1,4 +1,5 @@
 from approxeng.input.selectbinder import ControllerResource
+from time import sleep
 
 # Outer try / except catches the RobotStopException we just defined, which we'll raise when we want to
 # bail out of the loop cleanly, shutting the motors down. We can raise this in response to a button press
@@ -11,7 +12,7 @@ try:
         try:
             # Bind to any available joystick, this will use whatever's connected as long as the library
             # supports it.
-            with ControllerResource(dead_zone=0.1, hot_zone=0.2) as joystick:
+            with ControllerResource() as joystick:
                 print('Controller found, press HOME button to exit, use left stick to drive.')
                 print(joystick.controls)
                 # Loop until the joystick disconnects, or we deliberately stop by raising a
@@ -20,7 +21,7 @@ try:
                     # Get joystick values from the left analogue stick
                     x_axis, y_axis = joystick['lx', 'ly']
                     # Set motor speeds
-                    if x_axis != x or y_axis != y
+                    if x_axis != x or y_axis != y:
                         print('x: ' + str(x_axis) + ' y: ' + str(y_axis))
                         x = x_axis
                         y = y_axis
@@ -33,7 +34,7 @@ try:
                     # If home was pressed, raise a RobotStopException to bail out of the loop
                     # Home is generally the PS button for playstation controllers, XBox for XBox etc
                     if 'home' in joystick.presses:
-                        raise RobotStopException()
+                        raise
 
                     sleep(0.2)
         except IOError:
@@ -41,7 +42,7 @@ try:
             # so in this case we just wait a second and try again after printing a message.
             print('No controller found yet')
             sleep(1)
-except RobotStopException:
+except Exception:
     # This exception will be raised when the home button is pressed, at which point we should
     # stop the motors.
     # stop_motors()
