@@ -34,6 +34,8 @@ try:
                     # Home is generally the PS button for playstation controllers, XBox for XBox etc
                     if 'home' in joystick.presses:
                         raise RobotStopException()
+
+                    sleep(0.2)
         except IOError:
             # We get an IOError when using the ControllerResource if we don't have a controller yet,
             # so in this case we just wait a second and try again after printing a message.
