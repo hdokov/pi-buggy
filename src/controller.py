@@ -18,7 +18,7 @@ try:
                     # Get joystick values from the left analogue stick
                     x_axis, y_axis = joystick['lx', 'ly']
                     # Set motor speeds
-                    print('x: ' + x_axis + ' y: ' + y_axis)
+                    print('x: ' + str(x_axis) + ' y: ' + str(y_axis))
                     # Get a ButtonPresses object containing everything that was pressed since the last
                     # time around this loop.
                     joystick.check_presses()
