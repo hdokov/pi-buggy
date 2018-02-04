@@ -2,6 +2,8 @@ from approxeng.input.selectbinder import ControllerResource
 
 # Outer try / except catches the RobotStopException we just defined, which we'll raise when we want to
 # bail out of the loop cleanly, shutting the motors down. We can raise this in response to a button press
+x = 0.0
+y = 0.0
 try:
     while True:
         # Inner try / except is used to wait for a controller to become available, at which point we
@@ -18,7 +20,10 @@ try:
                     # Get joystick values from the left analogue stick
                     x_axis, y_axis = joystick['lx', 'ly']
                     # Set motor speeds
-                    print('x: ' + str(x_axis) + ' y: ' + str(y_axis))
+                    if x_axis != x or y_axis != y
+                        print('x: ' + str(x_axis) + ' y: ' + str(y_axis))
+                        x = x_axis
+                        y = y_axis
                     # Get a ButtonPresses object containing everything that was pressed since the last
                     # time around this loop.
                     joystick.check_presses()
